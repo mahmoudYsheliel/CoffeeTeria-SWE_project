@@ -1,0 +1,17 @@
+version: '3.1'
+
+services:
+
+  mongo:
+    image: mongo
+    network_mode: host
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: oDJSwjBHFnIhU2KHBp7L2xf65VcNK9gWBll82Mpmuii1ly8KUYqFODTHx5xvkAht
+    volumes:
+      - labtronic_cdn_mdb_data:/data/db
+      - labtronic_cdn_mdb_config:/data/configdb
+
+volumes:
+  labtronic_cdn_mdb_data:
+  labtronic_cdn_mdb_config:
