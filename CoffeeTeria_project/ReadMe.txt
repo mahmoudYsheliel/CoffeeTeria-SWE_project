@@ -5,7 +5,7 @@ This project aims to develop a software solution for managing a modern coffee sh
 Project Goals:
 
 Streamline order processing and billing for coffee drinks and food items.
-Manage inventory for coffee beans, syrups, pastries, and other supplies.
+Manage inventory for coffee beans, syrups, and other supplies.
 Track customer purchases and preferences.
 
 
