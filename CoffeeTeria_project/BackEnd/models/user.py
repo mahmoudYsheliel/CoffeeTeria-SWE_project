@@ -7,8 +7,8 @@ class User(BaseModel):
     username:str
     password:str
     balance:Optional[float]=0
-    type:str #owner customer
-    city_name:str
+    type:Optional[str]='Customer' #owner or customer
+    city_name:Optional[str]='London'
     wish_list:Optional[list[str]] =[]
     
     

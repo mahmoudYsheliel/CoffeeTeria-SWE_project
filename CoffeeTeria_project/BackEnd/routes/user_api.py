@@ -25,7 +25,7 @@ async def login_for_access_token(
 ) -> Token|ServiceResponse:
     valid = await validate_user(form_data.username,form_data.password)
     if not valid:
-        return ServiceResponse(success=False,msg="no such user")
+        return ServiceResponse(success=False,msg="no such user", status_code=404)
 
     userid = await get_userid(form_data.username)
     access_token_expires = timedelta(minutes=1000000000)

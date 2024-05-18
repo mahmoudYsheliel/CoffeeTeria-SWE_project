@@ -15,7 +15,7 @@ def get_file_server_url():
 def get_token():
     url=f"http://{_SERVER_ADDR}:{_SERVER_PORT}/token"
     data = {
-        "username": 'mahmoud',
+        "username": 'hossam',
         "password": '2000'
     }
     res=requests.post( url, data=data)
