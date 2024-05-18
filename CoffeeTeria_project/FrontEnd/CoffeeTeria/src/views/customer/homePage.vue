@@ -1,7 +1,9 @@
 <script lang="ts" setup>
 import Card from "@/components/homePage/Card.vue";
 import Navbar from "@/components/homePage/Navbar.vue";
-let cardsInfo = [
+
+
+          let cardsInfo = [
   {
     id: 0,
     image: "src/assets/image 3.png",
@@ -12,27 +14,28 @@ let cardsInfo = [
     id: 1,
     image: "src/assets/image 4.png",
     title: "Tips and Hints",
-    to:''
+    to:'/information/Hits and Tips'
   },
   {
     id: 2,
     image: "src/assets/image 5.png",
     title: "Historical Facts",
-    to:''
+    to:'/information/Historical Facts'
   },
   {
     id: 3,
     image: "src/assets/image 6.png",
     title: "Recipes",
-    to:''
+    to:'/information/Coffee Recipes'
   },
   {
     id: 4,
     image: "src/assets/image 7.png",
     title: "Information",
-    to:''
+    to:'/information/Interesting Coffee Facts'
   },
 ];
+      
 </script>
 
 <template>

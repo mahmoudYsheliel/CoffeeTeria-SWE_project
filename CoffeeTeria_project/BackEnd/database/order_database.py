@@ -12,6 +12,13 @@ async def create_order(order: Order) -> ServiceResponse:
         price =product['price']
         amount = amount +price*item.count
     order.amount = amount
+    bson_id = validate_bson_id(order.customer_id)
+    balance=await get_database().get_collection('user').find_one({'_id':bson_id})
+    balance=balance['balance']
+    if balance<amount:
+        return ServiceResponse(
+        success=False, msg="not enough money", status_code=409
+    )
     
     mdb_result = (
         await get_database()
@@ -20,6 +27,7 @@ async def create_order(order: Order) -> ServiceResponse:
     )
     order_id = str(mdb_result.inserted_id)
     if order_id:
+        await get_database().get_collection('user').update_one({'_id':bson_id},{'$set':{'balance':balance-price}})
         return ServiceResponse(data={"order_id": order_id})
     return ServiceResponse(
         success=False, msg="couln't add order", status_code=409

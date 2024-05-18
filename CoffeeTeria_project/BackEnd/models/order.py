@@ -1,17 +1,22 @@
 from pydantic import BaseModel
 from typing import Optional
-from datetime import datetime
 
 
 class ItemCount(BaseModel):
     product_id:str
     count:int
+    
+class OrderInfo(BaseModel):
+    location:Optional[str]=''
+    time:Optional[str]=''
+    number_of_seats:Optional[int]=0
 
 class Order(BaseModel):
-    id:Optional[str]
+    id:Optional[str]=''
     coffee_shop_id:str
     customer_id:Optional[str]
-    created_at:datetime
-    type:str #pickup or delivery
-    amount:Optional[int]=0
+    type:str #delivery pickup or book
+    amount:Optional[float]=0
+    created_at:str
     details:list[ItemCount]
+    order_info:OrderInfo

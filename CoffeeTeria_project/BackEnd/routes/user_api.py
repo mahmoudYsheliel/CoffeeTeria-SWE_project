@@ -28,7 +28,7 @@ async def login_for_access_token(
         return ServiceResponse(success=False,msg="no such user")
 
     userid = await get_userid(form_data.username)
-    access_token_expires = timedelta(minutes=1000)
+    access_token_expires = timedelta(minutes=1000000000)
     access_token = create_access_token(
         data={'userId':userid}, expires_delta=access_token_expires
     )

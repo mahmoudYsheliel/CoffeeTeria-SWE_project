@@ -107,23 +107,45 @@ export const useCart = defineStore("cart", {
       if(!this.products.includes(Id)){
 
         this.products.push(Id);
-        localStorage.setItem("products", JSON.stringify(this.products));
       }
     },
     delete() {
       this.products = [];
-      localStorage.removeItem('products');
     },
   },
   getters: {
     getProducts(state) {
-      const data = localStorage.getItem("products");
-
-      if (data) {
-        this.products = JSON.parse(data);
-      }
+     
       return state.products;
     },
   },
 });
+
+interface productCount{
+  productId:string
+  price:number
+  count:number
+}
+
+export const useOrder = defineStore("order", {
+  state: () => ({
+    productsCounts:[] as productCount[]
+  }),
+  actions: {
+    addProductCount( productId:string,price:number,count:number) {
+        this.productsCounts.push({productId:productId,price:price,count:count});
+    
+    },
+    delete() {
+      this.productsCounts = [];
+    },
+  },
+  getters: {
+    getProducts(state) {
+     
+      return state.productsCounts;
+    },
+  },
+});
+
 

@@ -2,7 +2,7 @@ from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from contextlib import asynccontextmanager
 import database.mongo_driver as mdb
-from routes import user_api,coffee_shop_api,product_api,order_api
+from routes import user_api,coffee_shop_api,product_api,order_api,information_ai
 
 
 @asynccontextmanager
@@ -25,3 +25,4 @@ app.include_router(user_api.router)
 app.include_router(coffee_shop_api.router)
 app.include_router(product_api.router)
 app.include_router(order_api.router)
+app.include_router(information_ai.router)

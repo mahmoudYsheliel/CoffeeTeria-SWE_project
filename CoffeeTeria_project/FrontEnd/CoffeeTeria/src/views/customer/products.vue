@@ -24,7 +24,7 @@ axios
     <div class="container">
         <Product  v-for="product in shop?.products" :id="product"/>
     </div>
-    <Button label="View Cart" @click="router.push('/cart')"/>
+    <Button label="View Cart" @click="router.push(`/cart/${route.params.shopId}`)"/>
 
 </main>
 
