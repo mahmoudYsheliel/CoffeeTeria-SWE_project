@@ -36,7 +36,8 @@ axios.post("http://127.0.0.1:8000/get_information", {}, {}).then((res) => {
           },
           content: {
             style: {
-              'background-color': 'var(--accent1)',
+              'background-color': 'var(--accent3)',
+              'padding-top': '0.5rem'
             },
           },
         }"

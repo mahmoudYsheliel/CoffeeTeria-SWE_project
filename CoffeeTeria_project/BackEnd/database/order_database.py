@@ -27,7 +27,7 @@ async def create_order(order: Order) -> ServiceResponse:
     )
     order_id = str(mdb_result.inserted_id)
     if order_id:
-        await get_database().get_collection('user').update_one({'_id':bson_id},{'$set':{'balance':balance-price}})
+        await get_database().get_collection('user').update_one({'_id':bson_id},{'$set':{'balance':balance-amount}})
         return ServiceResponse(data={"order_id": order_id})
     return ServiceResponse(
         success=False, msg="couln't add order", status_code=409

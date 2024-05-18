@@ -26,7 +26,8 @@ h1 {
   --secondary:#FFEACE;
   --text:#2C2C2C;
   --accent1:#FFEACE;
-  --accent2:#957255
+  --accent2:#957255;
+  --accent3:#F4C9A9
 }
 
 </style>
