@@ -11,7 +11,7 @@ body,html{
   padding: 0;
   margin: 0;
   background-color: var(--primary);
-  background-image: url("assets/hq1.jpg");
+  background-image: url("/images/hq1.jpg");
   background-size: cover;
   background-position: top 20% right 0%;
   width:  100%;

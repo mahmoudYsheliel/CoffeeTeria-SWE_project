@@ -32,7 +32,7 @@ personalInformation();
 <template>
   <main>
     <div class="container">
-      <img src="/src/assets/coffeelogo.png" alt="" />
+      <img src="/images/coffeelogo.png" alt="" />
 
       <div class="profile" v-if="token.getIsAuthorized">
         <i class="pi pi-user" @click="viewLogout = !viewLogout"></i>

@@ -13,8 +13,7 @@ import InputNumber from "primevue/inputnumber";
 import Calendar from "primevue/calendar";
 import { useRoute } from "vue-router";
 
-const info =usePersonalInfo()
-
+const info = usePersonalInfo();
 
 const token = useToken();
 const route = useRoute();
@@ -50,13 +49,11 @@ const total = computed(() => {
   return total;
 });
 for (let productId of cart.getProducts) {
-  axios
-    .post("http://127.0.0.1:8000/get_product", { product_id: productId })
-    .then((res) => {
-      if (res.data.data.product) {
-        productsCounts.value.push({ product: res.data.data.product, count: 1 });
-      }
-    });
+  axios.post("/get_product", { product_id: productId }).then((res) => {
+    if (res.data.data.product) {
+      productsCounts.value.push({ product: res.data.data.product, count: 1 });
+    }
+  });
 }
 const proceed = () => {
   for (let product of productsCounts.value) {
@@ -118,7 +115,7 @@ const proceed = () => {
 function sendOrder(order_info: any, type: string) {
   axios
     .post(
-      "http://127.0.0.1:8000/create_order",
+      "/create_order",
       {
         order: {
           coffee_shop_id: route.params.shopId,
@@ -140,7 +137,7 @@ function sendOrder(order_info: any, type: string) {
         orderSuccess.value = true;
         axios
           .post(
-            "http://127.0.0.1:8000/personal_info",
+            "/personal_info",
             {},
             {
               headers: {
@@ -149,14 +146,13 @@ function sendOrder(order_info: any, type: string) {
             }
           )
           .then((res: any) => {
-            console.log(res)
+            console.log(res);
             let data = res.data.data.info;
             if (data) {
               info.addInfo(data["balance"], data["username"], data["type"]);
               info.saveToLocalStorage();
-            
-          }});
-
+            }
+          });
       }
     });
 }
@@ -175,7 +171,9 @@ function sendOrder(order_info: any, type: string) {
         :style="{ width: '40rem' }"
       >
         <h1 style="color: rgb(100, 200, 50)">Order Done Successfuly</h1>
-        <p v-if="selectedOrderType==orderType[0]">time to deliver is: 20 minutes</p>
+        <p v-if="selectedOrderType == orderType[0]">
+          time to deliver is: 20 minutes
+        </p>
         <Button @click="router.push('/')" label="Return Home Page" />
       </Dialog>
 
