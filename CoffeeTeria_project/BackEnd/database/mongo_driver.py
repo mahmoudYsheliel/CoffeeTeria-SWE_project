@@ -6,6 +6,7 @@ mdb_client: motor.motor_asyncio.AsyncIOMotorClient | None = None
 async def mongodb_connect():
     connection_string = 'mongodb://localhost:27017'
     global mdb_client
+    
     mdb_client = motor.motor_asyncio.AsyncIOMotorClient(connection_string, serverSelectionTimeoutMS=3000)
     
     
