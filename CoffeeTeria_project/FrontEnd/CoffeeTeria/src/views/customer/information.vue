@@ -7,7 +7,7 @@ import AccordionTab from "primevue/accordiontab";
 import axios from "axios";
 const route = useRoute();
 const information = ref<any[]>();
-axios.post("http://127.0.0.1:8000/get_information", {}, {}).then((res) => {
+axios.post("/get_information", {}, {}).then((res) => {
   let infos = [];
   for (const info of res.data.data.information) {
     if (info.type == route.params.type) {
@@ -22,7 +22,7 @@ axios.post("http://127.0.0.1:8000/get_information", {}, {}).then((res) => {
 <template>
   <Navbar />
   <div class="container">
-    <h1 style="color: var(--secondary);">{{ route.params.type }}</h1>
+    <h1 style="color: var(--secondary)">{{ route.params.type }}</h1>
     <Accordion class="con" :activeIndex="-1">
       <AccordionTab
         v-for="info in information"
@@ -37,7 +37,7 @@ axios.post("http://127.0.0.1:8000/get_information", {}, {}).then((res) => {
           content: {
             style: {
               'background-color': 'var(--accent3)',
-              'padding-top': '0.5rem'
+              'padding-top': '0.5rem',
             },
           },
         }"

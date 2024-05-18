@@ -17,17 +17,17 @@ const userNotFound = ref(false);
 function login() {
   axios
     .post(
-      "http://127.0.0.1:8000/token",
+      "/token",
       `grant_type=&username=${userName.value}&password=${pass.value}&scope=&client_id=&client_secret=`
     )
     .then((res: any) => {
-        console.log(res)
+      console.log(res);
       if (res.data["access_token"]) {
         token.addToken(res.data["access_token"]);
 
         axios
           .post(
-            "http://127.0.0.1:8000/personal_info",
+            "/personal_info",
             {},
             {
               headers: {
@@ -36,7 +36,7 @@ function login() {
             }
           )
           .then((res: any) => {
-            console.log(res)
+            console.log(res);
             let data = res.data.data.info;
             if (data) {
               info.addInfo(data["balance"], data["username"], data["type"]);
@@ -51,16 +51,14 @@ function login() {
       }
     });
 }
-
-
 </script>
 <template>
-    <main>
-        <div class="container">
+  <main>
+    <div class="container">
       <div class="login">
         <div class="wrapper">
           <h2 v-if="userNotFound">user not found</h2>
-          <img src="/src/assets/coffeelogo.png" alt="">
+          <img src="/images/coffeelogo.png" alt="" />
           <div class="inputs">
             <InputText placeholder="Username" type="text" v-model="userName" />
             <InputText placeholder="Password" type="text" v-model="pass" />
@@ -68,28 +66,27 @@ function login() {
           <Button @click="login" label="LOGIN" />
         </div>
       </div>
-      <img src="/src/assets/image 1.png" alt="image" class="side-image" />
+      <img src="/images/image 1.png" alt="image" class="side-image" />
     </div>
-    </main>
+  </main>
 </template>
 
-<style scoped> 
-main{
-    background-color: var(--primary);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding-top: 5rem
+<style scoped>
+main {
+  background-color: var(--primary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-top: 5rem;
 }
 .container {
-
   width: 800px;
   aspect-ratio: 1.6/1;
   background-color: var(--secondary);
   border-radius: 8px;
   overflow: hidden;
   display: flex;
-  color: var(--MyText)
+  color: var(--MyText);
 }
 .login {
   height: 100%;
@@ -113,8 +110,8 @@ main{
   flex-direction: column;
   gap: 12px;
 }
-button{
-    padding-inline: 2rem;
+button {
+  padding-inline: 2rem;
 }
 
 @media screen and (max-width: 800px) {
