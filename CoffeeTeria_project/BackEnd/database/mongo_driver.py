@@ -4,7 +4,7 @@ from bson import ObjectId
 mdb_client: motor.motor_asyncio.AsyncIOMotorClient | None = None
 
 async def mongodb_connect():
-    connection_string = 'mongodb://root:oDJSwjBHFnIhU2KHBp7L2xf65VcNK9gWBll82Mpmuii1ly8KUYqFODTHx5xvkAht@localhost:27017/'
+    connection_string = 'mongodb://localhost:27017'
     global mdb_client
     mdb_client = motor.motor_asyncio.AsyncIOMotorClient(connection_string, serverSelectionTimeoutMS=3000)
     

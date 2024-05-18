@@ -14,7 +14,7 @@ import Navbar from "@/components/homePage/Navbar.vue";
     id: 1,
     image: "src/assets/image 4.png",
     title: "Tips and Hints",
-    to:'/information/Hits and Tips'
+    to:'/information/Hints and Tips'
   },
   {
     id: 2,

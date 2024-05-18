@@ -1,4 +1,4 @@
-from jose import jwt,JWTError
+from jose import jwt, JWTError
 from fastapi import Depends,HTTPException,status
 from passlib.context import CryptContext
 from typing import Any,Annotated
