@@ -1,12 +1,19 @@
-<script setup lang="ts">
+<script lang="ts" setup>
+// Importing components and utilities
 import Navbar from "@/components/homePage/Navbar.vue";
 import { useRoute } from "vue-router";
 import { ref } from "vue";
 import Accordion from "primevue/accordion";
 import AccordionTab from "primevue/accordiontab";
 import axios from "axios";
+
+// Accessing route information
 const route = useRoute();
+
+// Reference variable to hold information data
 const information = ref<any[]>();
+
+// Fetching information data from the server
 axios.post("/get_information", {}, {}).then((res) => {
   let infos = [];
   for (const info of res.data.data.information) {
@@ -15,17 +22,22 @@ axios.post("/get_information", {}, {}).then((res) => {
     }
   }
   information.value = infos;
-  console.log(infos);
 });
 </script>
 
 <template>
+  <!-- Navbar component -->
   <Navbar />
+  <!-- Container for information -->
   <div class="container">
+    <!-- Title of information -->
     <h1 style="color: var(--secondary)">{{ route.params.type }}</h1>
+    <!-- Accordion component for displaying information -->
     <Accordion class="con" :activeIndex="-1">
+      <!-- Iterate over information data and create AccordionTab for each item -->
       <AccordionTab
         v-for="info in information"
+        :key="info.title"
         class="title"
         :header="info.title"
         :pt="{
@@ -42,6 +54,7 @@ axios.post("/get_information", {}, {}).then((res) => {
           },
         }"
       >
+        <!-- Description of information -->
         <p class="m-0 description">
           {{ info.description }}
         </p>

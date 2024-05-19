@@ -1,12 +1,13 @@
-<script setup lang="ts">
+<script lang="ts" setup>
+// Importing necessary components and utilities
 import Button from "primevue/button";
 import InputText from "primevue/inputtext";
 import { useRouter } from "vue-router";
 import { ref } from "vue";
-
 import axios from "axios";
 import { useToken, usePersonalInfo } from "../../stores/counter";
 
+// Initializing variables and hooks
 const userName = ref("");
 const pass = ref("");
 const router = useRouter();
@@ -14,6 +15,7 @@ const token = useToken();
 const info = usePersonalInfo();
 const userNotFound = ref(false);
 
+// Function to handle login process
 function login() {
   axios
     .post(
@@ -21,8 +23,10 @@ function login() {
       `grant_type=&username=${userName.value}&password=${pass.value}&scope=&client_id=&client_secret=`
     )
     .then((res: any) => {
+      // Logging the response
       console.log(res);
       if (res.data["access_token"]) {
+        // Adding token to store
         token.addToken(res.data["access_token"]);
 
         axios
@@ -39,12 +43,14 @@ function login() {
             console.log(res);
             let data = res.data.data.info;
             if (data) {
+              // Adding personal info to store
               info.addInfo(data["balance"], data["username"], data["type"]);
               info.saveToLocalStorage();
-              if (data["type"] === "customer") {
+              // Redirecting based on user type
+              if (data["type"] === "customer" || data["type"] === "owner") {
                 router.push("/");
-              } else if (data["type"] === "owner") {
-                router.push("/");
+              } else {
+                userNotFound.value = true;
               }
             }
           });
@@ -52,20 +58,25 @@ function login() {
     });
 }
 </script>
+
 <template>
   <main>
     <div class="container">
       <div class="login">
         <div class="wrapper">
-          <h2 v-if="userNotFound">user not found</h2>
+          <!-- Display error message if user not found -->
+          <h2 v-if="userNotFound">User not found</h2>
           <img src="/images/coffeelogo.png" alt="" />
           <div class="inputs">
+            <!-- Input fields for username and password -->
             <InputText placeholder="Username" type="text" v-model="userName" />
             <InputText placeholder="Password" type="text" v-model="pass" />
           </div>
+          <!-- Button to initiate login process -->
           <Button @click="login" label="LOGIN" />
         </div>
       </div>
+      <!-- Side image -->
       <img src="/images/image 1.png" alt="image" class="side-image" />
     </div>
   </main>

@@ -1,4 +1,4 @@
-<script setup lang="ts">
+<script lang="ts" setup>
 import Button from "primevue/button";
 import InputText from "primevue/inputtext";
 import InputNumber from "primevue/inputnumber";
@@ -8,13 +8,15 @@ import { useRouter } from "vue-router";
 import axios from "axios";
 const router = useRouter();
 
-const username = ref();
-const pass = ref();
-const confirmedPass = ref();
-const city = ref();
-const missingInfo = ref(false);
-const differentPassword = ref(false);
+// Variables for form fields and error handling
+const username = ref<string>("");
+const pass = ref<string>("");
+const confirmedPass = ref<string>("");
+const city = ref<string>("");
+const missingInfo = ref<boolean>(false);
+const differentPassword = ref<boolean>(false);
 
+// Function to handle the signup process
 function signup() {
   if (!username.value || !pass.value || !confirmedPass.value || !city.value) {
     missingInfo.value = true;
